@@ -1,0 +1,12 @@
+name: Rank
+main: rank\Main
+version: 1.0.0
+api: [3.0.0-ALPHA11]
+author: SkySeven
+
+commands:
+  setrank:
+    description: Set rank to a player
+  addrank:
+    description: create a rank
+ 
