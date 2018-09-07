@@ -64,7 +64,7 @@ class Main extends PluginBase implements Listener{
 				$config = new Config($this->getDataFolder()."Ranks/".$args[0].".yml", Config::YAML, array(
 					"prefix" => $args[1]
 				));
-				
+				$config->save();
 				$sender->sendMessage("§aThis rank was successfully created");
 				
 			}else{
