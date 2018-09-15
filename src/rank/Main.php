@@ -47,16 +47,15 @@ class Main extends PluginBase implements Listener{
 	
 	public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool{
 		
-		if($cmd == "setrank"){
-
-			if($sender->isOp()){
-				
+		if($sender->isOp()){
+			if($cmd == "setrank"){
+					
 				if(!empty($args[1])){
 					
-					if(file_exists($this->getDataFolder()."ranks/".$args[1].".yml")){
-						
-						$this->setRank($args[0], $args[1]);
-						$sender->sendMessage("§l§a» §r§a".$args[0]." is now §e".$args[1].".");
+					if(file_exists($this->getDataFolder()."ranks/".strtolower($args[1]).".yml")){
+							
+						$this->setRank($args[0], strtolower($args[1]));
+						$sender->sendMessage("§l§a» §r§a".$args[0]." is now §e".strtolower($args[1]).".");
 						
 					}else{
 						$sender->sendMessage("§l§c» §r§cThis rank doesn't exist !");
@@ -65,19 +64,19 @@ class Main extends PluginBase implements Listener{
 					$sender->sendMessage("§l§a» §r§a/setrank [name] [rank]");
 				}
 			}
-		}
-		if($cmd == "addrank"){
+			if($cmd == "addrank"){
 
-			if(!empty($args[1])){
+				if(!empty($args[1])){
 
-				$config = new Config($this->getDataFolder()."ranks/".strtolower($args[0]).".yml", Config::YAML, array(
-					"prefix" => $args[1]
-				));
-				
-				$sender->sendMessage("§l§a» §r§aThis rank was successfully created");
-				
-			}else{
-				$sender->sendMessage("§l§a» §r§a/addrank [name] [prefix]");
+					$config = new Config($this->getDataFolder()."ranks/".strtolower($args[0]).".yml", Config::YAML, array(
+						"prefix" => $args[1]
+					));
+					
+					$sender->sendMessage("§l§a» §r§aThis rank was successfully created");
+					
+				}else{
+					$sender->sendMessage("§l§a» §r§a/addrank [name] [prefix]");
+				}
 			}
 		}
 		return true;
